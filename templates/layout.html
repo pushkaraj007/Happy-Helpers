@@ -1,0 +1,35 @@
+{% extends "index.html" %}
+{% load static %}
+
+<head>
+    <title>Medi-OLX</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Meta tags for PWA -->
+    <meta name= "apple-mobile-web-app-status-bar" content="#aa7700">
+    <meta name="theme-color" content="black">
+
+    <link rel="manifest" href="{% static 'manifest.json' %}">
+
+
+    </head>
+    <script>
+    window.addEventListener('load', () => {
+    registerSW();
+    });
+    // Register the Service Worker
+    async function registerSW() {
+    if ('serviceworker' in navigator) {
+    try {
+    await navigator
+    .serviceworker
+    .register({% static 'serviceworkerjs' %});
+
+    }
+    catch (e) {
+    console.log('SW registration failed');
+    }
+    }
+    }
+    </script>
+    
